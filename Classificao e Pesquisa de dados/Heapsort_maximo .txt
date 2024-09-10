@@ -1,0 +1,35 @@
+def heapify(seq, n, i):
+   
+    maior =i  
+    elemento_esquerda =2 * i + 1 
+    elemento_direita =2 * i + 2   
+
+   
+    if elemento_esquerda < n and seq[elemento_esquerda] > seq[maior]:
+        maior =elemento_esquerda
+  
+    if elemento_direita < n and seq[elemento_direita] > seq[maior]:
+        maior =elemento_direita
+
+    if maior != i:
+        seq[i], seq[maior] = seq[maior], seq[i]  
+        heapify(seq, n, maior) 
+
+def heap_sort_maximo(seq):
+    n = len(seq)
+
+
+    for i in range(n //2-1,-1,-1):
+        heapify(seq,n,i)
+
+
+    for i in range(n-1,0,-1):
+        seq[i],seq[0] = seq[0],seq[i]
+        heapify(seq,i,0)
+
+
+
+sequencia = [6,20,17,15,2,35,5,9,21,10]
+print("Sequencia desordenada:", sequencia)
+heap_sort_maximo(sequencia)
+print("Sequencia ordenada:", sequencia)
